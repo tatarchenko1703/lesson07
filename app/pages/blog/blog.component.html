@@ -1,0 +1,16 @@
+<div class="container-fluid mt-3 mb-3">
+    <div class="row">
+        <ng-container *ngIf="userBlogs.length > 0">
+            <div class="col-4 mt-3" *ngFor="let userBlog of userBlogs">
+                <div class="card border border-0 w-100">
+                    <img src='https://images.pexels.com/photos/5777144/pexels-photo-5777144.jpeg' class="img-fluid" style="height: 400px" alt="">
+                </div>
+                <div class="mt-3">
+                    <a href="#" class="card-link text-decoration-none">{{ userBlog.autor | uppercase }}</a>
+                    <h5 class="card-title mt-3 fs-4 fw-semibold">{{ userBlog.title }}</h5>
+                    <p class="mt-3"> {{ userBlog.text }} </p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

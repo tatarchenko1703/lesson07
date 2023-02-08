@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-12">
+        <form>
+            <div class="mb-3">
+                <img src="../../../../assets/images/Culture3.png" alt="">
+                <input
+                    [(ngModel)]="title"
+                    name="title" 
+                    type="text" 
+                    class="form-control" 
+                    id="title" 
+                    placeholder="title here..">
+            </div>
+
+            <div class="mb-3">
+                <textarea 
+                   [(ngModel)]="textBlog"
+                   name="textblog" 
+                   id="textblog" 
+                   class="form-control"
+                   style="height: 100px"
+                   placeholder="text here.."></textarea>
+            </div>
+
+            <div class="mb-3">
+                <input  
+                    [(ngModel)]="autor"
+                    name="autor" 
+                    type="text" 
+                    class="form-control" 
+                    id="autor"
+                    placeholder="autor here.."
+                >
+            </div>
+            <div class="col-1">
+                <button 
+                    *ngIf="!editStatus" 
+                    [disabled]="!title || (!textBlog) || (!autor)" 
+                    type="button" 
+                    class="btn btn-success w-100"
+                    (click)="addBlog()">Add
+                </button>
+                <button 
+                    *ngIf="editStatus" 
+                    [disabled]="!title" 
+                    type="button" 
+                    class="btn btn-success w-100"
+                    (click)="saveBlog()">Save
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="col-12">
+        <table class="table table-hover mt-5 fs-5">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 5%">#</th>
+                    <th scope="col" style="width: 15%">Title</th>
+                    <th scope="col" style="width: 45%">Text</th>
+                    <th scope="col" style="width: 25%">Autor</th>
+                    <th scope="col" style="width: 5%">Edit</th>
+                    <th scope="col" style="width: 5%">Delete</th>  
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let blog of adminBlogs">
+                    <td >{{ blog.id }}</td>
+                    <td> {{ blog.title }}</td>
+                    <td> 
+                        {{ blog.text | slice:0:70 }}
+                        <span *ngIf="blog.text.length > 70">...</span>
+                    </td>
+                    <td> {{ blog.autor }}</td>
+                    <td>
+                        <button 
+                            (click)="editBlog(blog)" 
+                            type="button"
+                            class="btn btn-secondary me-2">Edit
+                        </button>
+                    </td>
+                    <td>
+                        <button 
+                            [disabled]="editStatus" 
+                            (click)="deleteBlog(blog)" 
+                            type="button"
+                            class="btn btn-danger">Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
